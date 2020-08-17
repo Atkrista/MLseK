@@ -10,50 +10,47 @@ DOWN = (0,-1)
 RIGHT = (1,0)
 LEFT = (-1,0)
 
+#Initial positions of Snake
+INITIAL = [(0,0), (1,0), (2,0), (3,0)]
+HEAD = INITIAL[-1]
+BODY = INITIAL[1:]
+
 class Game:
     def __init__(self, height = HEIGHT, width = WIDTH):
         self.height = height
         self.width = width
         #initialising a Snake object inside the constructor
-        self.snake = Snake([(0,0), (1,0), (2,0), (3,0)], UP)
+        self.snake = Snake(INITIAL, UP)
 
     def board_matrix(self):
         matrix = np.zeros(shape = (self.height, self.width), dtype = int)
         return matrix
 
+    def char_to_print(board, i, j):
+        if (i,j) == (HEAD[0],HEAD[1]):
+            return 'X'
+        elif (i,j) in BODY: 
+            return 'O'
+        else:
+            return ' '
+        
 
     def render(self, board):
         #print the line on the top of the board
-        for i in range(len(board)):
-            print(" __", end ='')
-        print()    
-        #Print the actual board 
+        print("+" + self.width * '--' + "+" )
         for i in range(len(board)):
             print("|", end ='')
             for j in range(len(board[0])):
-                if board[i][j] == 0:
-                    print('.  ', end ='')
-                else:
-                    print('#', end ='')
+                print(self.char_to_print(self.height -1- i, self.width-1- j) + ' ' , end ='')
             print("|")
 
         #Print the line at the bottom of the board
-        for i in range(len(board)):
-            print(" --", end ='')
+        print("+" + self.width * '--' + "+" )
+        
         print()
 
         head = self.snake.body[-1]
         body = self.snake.body[0:len(self.snake.body)]
-
-        for i in range(len(board)):
-            for j in range(len(board[0])):
-                #if i == head[0] and j == head[1]:
-                #    print('X')
-                #for k in range(len(body)):
-                #    if i == body[0] and j== body[1] 
-            
-
-
 
 
 
