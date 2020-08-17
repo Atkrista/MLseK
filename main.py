@@ -16,20 +16,21 @@ class Game:
     def render(self, board):
         #print the line on the top of the board
         for i in range(len(board)):
-            print("__ ", end ='')
+            print(" __", end ='')
         print()    
         #Print the actual board 
         for i in range(len(board)):
+            print("|", end ='')
             for j in range(len(board[0])):
                 if board[i][j] == 0:
-                    print('.  ', end = '')
+                    print('.  ', end ='')
                 else:
-                    print('#', end = '')
-            print()
+                    print('#', end ='')
+            print("|")
 
         #Print the line at the bottom of the board
         for i in range(len(board)):
-            print("__ ", end ='')
+            print(" --", end ='')
         print()
 
     
